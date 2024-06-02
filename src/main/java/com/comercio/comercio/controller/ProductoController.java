@@ -7,15 +7,14 @@ import com.comercio.comercio.service.UploadFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Optional;
 
 
 @Controller
@@ -55,4 +54,23 @@ public class ProductoController {
         productoService.save(producto);
         return "productos/show";
     }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model){
+        Producto producto= new Producto();
+        Optional<Producto> optionalProducto=productoService.get(id);
+        producto = optionalProducto.get();
+
+        LOGGER.info("Producto buscado: {}", producto);
+        model.addAttribute("producto", producto);
+        return "productos/edit";
+    }
+
+    @PostMapping("/update")
+    public String update(Producto producto){
+        productoService.update(producto);
+        return "redirect:/productos";
+
+    }
+
 }
