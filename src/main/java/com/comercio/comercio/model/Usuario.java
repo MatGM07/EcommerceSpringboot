@@ -17,7 +17,7 @@ public class Usuario {
     private String apellido;
     private String username;
     private String email;
-    private String ventas;
+    private Integer ventas;
     private String tipo;
     private String password;
 
@@ -29,7 +29,7 @@ public class Usuario {
 
     public Usuario(){}
 
-    public Usuario(Integer id, String nombre, String apellido, String username, String email, String ventas, String tipo, String password) {
+    public Usuario(Integer id, String nombre, String apellido, String username, String email, Integer ventas, String tipo, String password) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -80,11 +80,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getVentas() {
+    public Integer getVentas() {
         return ventas;
     }
 
-    public void setVentas(String ventas) {
+    public void setVentas(Integer ventas) {
         this.ventas = ventas;
     }
 
