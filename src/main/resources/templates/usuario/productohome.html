@@ -54,22 +54,30 @@
              th:alt="${producto.nombre}" />
         <div class="contenido text-center flex-1">
             <h2 class="text-xl font-bold mb-2" style="font-size: 3rem;" th:text="${producto.nombre}"></h2><br/>
-            <p style="font-size: 1.2rem;"><strong>DESCRIPCIÓN:</strong> <span th:text="${producto.descripcion}"></span></p><br/>
+            <p style="font-size: 1.2rem;"><strong>Vendedor:</strong> <span th:text="${producto.usuario.nombre}"></span><span>&nbsp;</span><span th:text="${producto.usuario.Apellido}"></span></p><br/>
+            <p style="font-size: 1.2rem;"><strong>Ubicación</strong></p><br/>
+            <p style="font-size: 1.2rem;"><span th:text="${producto.municipio}"></span><span>,&nbsp;</span><span th:text="${producto.departamento}"></span></p>
             <div class="flex justify-center items-center mt-5">
-                <h2 class="mx-5" th:text="'$' + ${producto.precio}"></h2>
-                <button class="p-2 bg-green-600 rounded-lg text-white" th:onclick="|window.location.href='/buy/${producto.id}'|">Comprar</button>
+                <p style="font-size: 1.2rem;"><span>Precio por </span><span th:text="${producto.unidad}"></span><span>:&nbsp;</span><span th:text="${producto.precio}"></span></p><br/>
+                <br>
+
             </div>
+            <div class="flex justify-center items-center mt-5">
+                <button class="p-2 bg-green-600 rounded-lg text-white" th:onclick="|window.location.href='/buy/${producto.id}'|">Comprar</button>
+                <a>&nbsp;</a>
             <br>
             <div th:if="${producto.usuario.id} == ${sesion}">
                 <a class="p-2 bg-green-600 rounded-lg text-white" th:href="@{/productos/edit/{id} (id=${producto.id}) }">Editar</a>
-                <br>
-                <br>
                 <a class="p-2 bg-green-600 rounded-lg text-white" th:href="@{/productos/delete/{id} (id=${producto.id}) }">Eliminar</a>
+            </div>
             </div>
         </div>
     </div>
     <hr/>
     <br/>
+</div>
+<div class="container mx-auto p-4">
+    <p style="font-size: 1.2rem;"><span th:text="${producto.descripcion}"></span>
 </div>
 </body>
 </html>

@@ -42,7 +42,8 @@ public class ProductoController {
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(HttpSession session, Model model) {
+        model.addAttribute("sesion", session.getAttribute("idusuario"));
         return "productos/create";
     }
 
@@ -62,13 +63,14 @@ public class ProductoController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Integer id, Model model){
+    public String edit(@PathVariable Integer id, Model model, HttpSession session){
         Producto producto= new Producto();
         Optional<Producto> optionalProducto=productoService.get(id);
         producto = optionalProducto.get();
 
         LOGGER.info("Producto buscado: {}", producto);
         model.addAttribute("producto", producto);
+        model.addAttribute("sesion", session.getAttribute("idusuario"));
         return "productos/edit";
     }
 

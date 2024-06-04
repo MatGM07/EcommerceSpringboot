@@ -39,6 +39,7 @@
 </head>
 <body>
 
+
 <div>
     <div id="header">
         <span class="text-xl text-white font-bold" style="margin-right: auto;">AGROMARKET</span>
@@ -52,6 +53,7 @@
             <a href="/productos/create" class="text-white">Registrar Producto</a>
             <a href="/usuario/cerrar" class="text-white">Cerrar Sesion</a>
         </div>
+
     </div>
 </div>
 <div className="p-12 bg-gray-300"></div> <br><br><br>
@@ -69,15 +71,15 @@
                     required
             />
             <label for="descripcion" class="block text-300 text-m font-medium mb-2">Descripción producto</label>
-            <input
+            <textarea
                     id="descripcion"
                     name="descripcion"
                     type="text"
                     class="w-full mb-5 h-4rem p-2"
                     placeholder="Descripción de ejemplo"
                     required
-            />
-            <label for="precio" class="block text-300 text-m font-medium mb-2">Precio</label>
+            ></textarea>
+            <label for="precio" class="block text-300 text-m font-medium mb-2">Precio por unidad</label>
             <input
                     id="precio"
                     name="precio"
@@ -91,6 +93,33 @@
                     id="cantidad"
                     name="cantidad"
                     type="number"
+                    class="w-full mb-5 h-4rem p-2"
+                    placeholder="Cantidad"
+                    required
+            />
+            <label for="unidad" class="block text-400 text-xl font-medium mb-2">Unidad (Kg, g, lb)</label>
+            <input
+                    id="unidad"
+                    name="unidad"
+                    type="text"
+                    class="w-full mb-5 h-4rem p-2"
+                    placeholder="Unidad"
+                    required
+            />
+            <label for="municipio" class="block text-400 text-xl font-medium mb-2">Municipio</label>
+            <input
+                    id="municipio"
+                    name="municipio"
+                    type="text"
+                    class="w-full mb-5 h-4rem p-2"
+                    placeholder="Cantidad"
+                    required
+            />
+            <label for="departamento" class="block text-400 text-xl font-medium mb-2">Departamento</label>
+            <input
+                    id="departamento"
+                    name="departamento"
+                    type="text"
                     class="w-full mb-5 h-4rem p-2"
                     placeholder="Cantidad"
                     required

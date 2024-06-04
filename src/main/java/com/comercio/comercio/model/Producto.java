@@ -10,10 +10,28 @@ public class Producto {
 
     private Integer id;
     private String nombre;
+    @Column(length = 2000)
     private String descripcion;
     private String imagen;
     private double precio;
     private int cantidad;
+    private String unidad;
+
+    public Producto(Integer id, String nombre, String descripcion, String imagen, double precio, int cantidad, String unidad, String municipio, String departamento, Usuario usuario) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.unidad = unidad;
+        this.municipio = municipio;
+        this.departamento = departamento;
+        this.usuario = usuario;
+    }
+
+    private String municipio;
+    private String departamento;
 
     @ManyToOne
     private Usuario usuario;
@@ -22,15 +40,6 @@ public class Producto {
 
     }
 
-    public Producto(Integer id, String nombre, String descripcion, String imagen, double precio, int cantidad, Usuario usuario) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.imagen = imagen;
-        this.precio = precio;
-        this.cantidad = cantidad;
-        this.usuario = usuario;
-    }
 
     public Integer getId() {
         return id;
@@ -88,6 +97,30 @@ public class Producto {
         this.usuario = usuario;
     }
 
+    public String getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
@@ -97,6 +130,10 @@ public class Producto {
                 ", imagen='" + imagen + '\'' +
                 ", precio=" + precio +
                 ", cantidad=" + cantidad +
+                ", unidad='" + unidad + '\'' +
+                ", municipio='" + municipio + '\'' +
+                ", departamento='" + departamento + '\'' +
+                ", usuario=" + usuario +
                 '}';
     }
 }
