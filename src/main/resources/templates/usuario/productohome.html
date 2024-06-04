@@ -1,13 +1,75 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        #header {
+            width: 100vw;
+            position: fixed;
+            background: #135200;
+            top: 0;
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            z-index: 10;
+        }
+        .text-xl {
+            font-size: 1.25rem; /* Adjust as needed */
+        }
+        .font-bold {
+            font-weight: bold;
+        }
+        .text-white {
+            color: white;
+        }
+        .gap-2rem {
+            gap: 2rem;
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="${producto.nombre}"></h1><br><br>
-<a th:href="@{/productos/edit/{id} (id=${producto.id}) }">editar</a>
-<br>
-<a th:href="@{/productos/delete/{id} (id=${producto.id}) }">editar</a>
+<div>
+    <div id="header">
+        <span class="text-xl text-white font-bold" style="margin-right: auto;">AGROMARKET</span>
+        <div style="display: flex; gap: 2rem;" th:if="${sesion==null}">
+            <a href="/" class="text-white">Inicio</a>
+            <a href="/usuario/login" class="text-white">Iniciar Sesion</a>
+            <a href="/usuario/registro" class="text-white">Registrarse</a>
+        </div>
+        <div style="display: flex; gap: 2rem;" th:unless="${sesion==null}">
+            <a href="/" class="text-white">Inicio</a>
+            <a href="/productos/create" class="text-white">Registrar Producto</a>
+            <a href="/usuario/cerrar" class="text-white">Cerrar Sesion</a>
+        </div>
+    </div>
+</div>
+<div class="p-12 bg-gray-100"></div>
+<div class="container mx-auto p-4">
+    <div class="producto-detail flex flex-row justify-center items-center space-x-4">
+        <img class="object-cover" style="width: 30%; height: auto; margin: auto; margin-left: 5rem;"
+             th:src="@{/images/{img}(img=${producto.imagen})} "
+             th:alt="${producto.nombre}" />
+        <div class="contenido text-center flex-1">
+            <h2 class="text-xl font-bold mb-2" style="font-size: 3rem;" th:text="${producto.nombre}"></h2><br/>
+            <p style="font-size: 1.2rem;"><strong>DESCRIPCIÓN:</strong> <span th:text="${producto.descripcion}"></span></p><br/>
+            <div class="flex justify-center items-center mt-5">
+                <h2 class="mx-5" th:text="'$' + ${producto.precio}"></h2>
+                <button class="p-2 bg-green-600 rounded-lg text-white" th:onclick="|window.location.href='/buy/${producto.id}'|">Comprar</button>
+            </div>
+            <br>
+            <div th:if="${producto.usuario.id} == ${sesion}">
+                <a class="p-2 bg-green-600 rounded-lg text-white" th:href="@{/productos/edit/{id} (id=${producto.id}) }">Editar</a>
+                <br>
+                <br>
+                <a class="p-2 bg-green-600 rounded-lg text-white" th:href="@{/productos/delete/{id} (id=${producto.id}) }">Eliminar</a>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <br/>
+</div>
 </body>
 </html>

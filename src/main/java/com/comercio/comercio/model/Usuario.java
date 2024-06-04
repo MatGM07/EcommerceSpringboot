@@ -15,7 +15,9 @@ public class Usuario {
     private Integer id;
     private String nombre;
     private String apellido;
+    @Column(unique = true)
     private String username;
+    @Column(unique = true)
     private String email;
     private Integer ventas;
     private String tipo;

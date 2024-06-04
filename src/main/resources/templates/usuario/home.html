@@ -1,11 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title> </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hover\:translate-y-2:hover {
+            transform: translateY(-0.5rem);
+        }
+        .hover\:shadow-2xl:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        #header {
+            width: 100vw;
+            position: fixed;
+            background: #135200;
+            top: 0;
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            z-index: 10;
+        }
+        .text-xl {
+            font-size: 1.25rem; /* Adjust as needed */
+        }
+        .font-bold {
+            font-weight: bold;
+        }
+        .text-white {
+            color: white;
+        }
+        .gap-2rem {
+            gap: 2rem;
+        }
+    </style>
 </head>
 <body>
-<h1>HOLA USUARIOOOOOOOOOO</h1>
-<p>introduzca los productos mano</p>
+
+<div>
+    <div id="header">
+        <span class="text-xl text-white font-bold" style="margin-right: auto;">AGROMARKET</span>
+        <div style="display: flex; gap: 2rem;" th:if="${sesion==null}">
+            <a href="/" class="text-white">Inicio</a>
+            <a href="/usuario/login" class="text-white">Iniciar Sesion</a>
+            <a href="/usuario/registro" class="text-white">Registrarse</a>
+        </div>
+        <div style="display: flex; gap: 2rem;" th:unless="${sesion==null}">
+            <a href="/" class="text-white">Inicio</a>
+            <a href="/productos/create" class="text-white">Registrar Producto</a>
+            <a href="/usuario/cerrar" class="text-white">Cerrar Sesion</a>
+        </div>
+
+    </div>
+</div>
+<div class="p-12 bg-gray-100 "></div>
+<div class="bg-gray-100 w-full min-h-screen gap-6 flex-wrap flex justify-center items-center">
+    <div th:each="producto : ${productos}" class="w-60 p-2 bg-white rounded-xl transform transition-all hover:translate-y-2 duration-300 shadow-lg hover:shadow-2xl mt-4 mb-4 lg:mt-0">
+        <img th:src="@{/images/{img}(img=${producto.imagen})} " alt="A" class="h-40 object-cover rounded-xl">
+        <div class="p-2">
+            <h2 class="font-bold text-lg mb-2" th:text="${producto.nombre}">Nombre del Producto</h2>
+            <span class="text-xl font-semibold" th:text="'$' + ${producto.precio}">Precio del Producto</span>
+        </div>
+        <div class="flex items-center gap-2 justify-center mb-3">
+            <a th:href="@{/productohome/{id} (id =${producto.id})}">
+                <button class="px-3 py-1 rounded-lg bg-gray-300 text-black hover:bg-green-600 hover:text-white">Ver Mas</button>
+            </a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

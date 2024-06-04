@@ -2,8 +2,11 @@ package com.comercio.comercio.controller;
 
 import com.comercio.comercio.model.Producto;
 import com.comercio.comercio.model.Usuario;
+import com.comercio.comercio.service.IUsuarioService;
 import com.comercio.comercio.service.ProductoService;
 import com.comercio.comercio.service.UploadFileService;
+import com.comercio.comercio.service.UsuarioServiceImpl;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,9 @@ public class ProductoController {
     private ProductoService productoService;
 
     @Autowired
+    private IUsuarioService usuarioService;
+
+    @Autowired
     private UploadFileService upload;
 
     @GetMapping("")
@@ -41,9 +47,9 @@ public class ProductoController {
     }
 
     @PostMapping("/save")
-    public String save(Producto producto,@RequestParam("img") MultipartFile file) throws IOException {
+    public String save(Producto producto, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
         LOGGER.info("Este es el objeto producto {}", producto);
-        Usuario u = new Usuario(1,"usuario","","","",null,"","");
+        Usuario u = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
         producto.setUsuario(u);
 
         if (producto.getId()==null){
@@ -52,7 +58,7 @@ public class ProductoController {
         }
 
         productoService.save(producto);
-        return "productos/show";
+        return "redirect:/";
     }
 
     @GetMapping("/edit/{id}")
@@ -68,25 +74,23 @@ public class ProductoController {
 
     @PostMapping("/update")
     public String update(Producto producto, @RequestParam("img") MultipartFile file) throws IOException {
-        if (file.isEmpty()){
-            Producto p = new Producto();
-            p = productoService.get(producto.getId()).get();
-            producto.setImagen(p.getImagen());
-        }else {
-            Producto p = new Producto();
-            p = productoService.get(producto.getId()).get();
+        Producto p= new Producto();
+        p=productoService.get(producto.getId()).get();
 
-            if (!p.getImagen().equals("default.jpg")){
+        if (file.isEmpty()) { // editamos el producto pero no cambiamos la imagem
+
+            producto.setImagen(p.getImagen());
+        }else {// cuando se edita tbn la imagen
+            //eliminar cuando no sea la imagen por defecto
+            if (!p.getImagen().equals("default.jpg")) {
                 upload.deleteImage(p.getImagen());
             }
-
-            String nombreImagen = upload.saveImage(file);
+            String nombreImagen= upload.saveImage(file);
             producto.setImagen(nombreImagen);
         }
-
+        producto.setUsuario(p.getUsuario());
         productoService.update(producto);
-        return "redirect:/productos";
-
+        return "redirect:/";
     }
 
     @GetMapping("/delete/{id}")
@@ -99,7 +103,7 @@ public class ProductoController {
             upload.deleteImage(p.getImagen());
         }
         productoService.delete(id);
-        return "redirect:/productos";
+        return "redirect:/";
     }
 
 }

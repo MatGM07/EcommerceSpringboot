@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .surface-card {
+            background-color: #f9fafb; /* Equivalent to bg-gray-50 */
+        }
+    </style>
+</head>
+<body>
+<div class="bg-gray-300 min-h-screen flex items-center justify-center p-6">
+    <div class="bg-gray-50 w-full surface-card py-7 px-6 sm:px-8" style="border-radius: 15px; width: 22rem;">
+        <p class="block text-900 text-xl font-medium mb-2">REGISTER</p>
+        <form th:action="@{/usuario/save}" method="post">
+            <label for="nombre" class="block text-300 text-m font-medium mb-2">Nombre</label>
+            <input
+                    id="nombre"
+                    name="nombre"
+                    type="text"
+                    class="w-full mb-5 h-4rem p-2 border border-gray-300 rounded"
+                    placeholder="Nombre de ejemplo"
+                    required
+            />
+            <label for="apellido" class="block text-300 text-m font-medium mb-2">Apellido</label>
+            <input
+                    id="apellido"
+                    name="apellido"
+                    type="text"
+                    class="w-full mb-5 h-4rem p-2 border border-gray-300 rounded"
+                    placeholder="Apellido de ejemplo"
+                    required
+            />
+            <label for="username" class="block text-300 text-m font-medium mb-2">Username</label>
+            <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    class="w-full mb-5 h-4rem p-2 border border-gray-300 rounded"
+                    placeholder="Username de ejemplo"
+                    required
+            />
+            <label for="email" class="block text-400 text-xl font-medium mb-2">Correo Electrónico</label>
+            <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    class="w-full mb-5 h-4rem p-2 border border-gray-300 rounded"
+                    placeholder="Correo Electrónico"
+                    required
+            />
+            <label for="password" class="block text-400 text-xl font-medium mb-2">Contraseña</label>
+            <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    class="w-full mb-5 h-4rem p-2 border border-gray-300 rounded"
+                    placeholder="Contraseña"
+                    required
+            />
+            <button
+                    type="submit"
+                    class="p-2 bg-green-600 mr-7 rounded-lg text-white"
+            >
+                Registrarse
+            </button>
+            <a class="align-content-end text-blue-500" href="/usuario/login">Iniciar Sesión</a>
+        </form>
+        <br>
+
+        <div th:if="${registroError}">
+            <p style="color: red;">El nombre de usuario o el correo ya existe. Por favor, elija otro.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
