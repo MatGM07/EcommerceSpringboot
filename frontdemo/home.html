@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroMarket - Lista de Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hover\:translate-y-2:hover {
+            transform: translateY(-0.5rem);
+        }
+        .hover\:shadow-2xl:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        #header {
+            width: 100vw;
+            position: fixed;
+            background: #135200;
+            top: 0;
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            z-index: 10;
+        }
+        .colored {
+            background: linear-gradient(to top, #4d7e3e, #135200);
+            text-align: center;
+        }
+        .colored p {
+            color: white;
+            margin-left: 30px;
+            margin-right: 30px;
+            font-family: "Verdana";
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- Header -->
+<div id="header">
+    <span class="text-xl text-white font-bold" style="margin-right: auto;">AGROMARKET</span>
+    <div style="display: flex; gap: 2rem;">
+        <a href="index.html" class="text-white hover:underline">Inicio</a>
+        <a href="login.html" class="text-white hover:underline">Iniciar Sesión</a>
+        <a href="registro.html" class="text-white hover:underline">Registrarse</a>
+    </div>
+</div>
+
+<!-- Espaciador por header fijo -->
+<div class="p-9"></div>
+
+<!-- Banner -->
+<div class="colored">
+    <br>
+    <img src="images/Round.png" alt="Logo AgroMarket" width="500" height="300" class="mx-auto">
+    <br>
+    <p>
+        AGROMARKET es un marketplace donde los agricultores y campesinos pueden agregar sus productos
+        reduciendo intermediarios y obteniendo mejores beneficios, garantizando confiabilidad en las compras
+        y mayor exposición a nivel nacional.
+    </p>
+</div>
+
+<!-- Productos -->
+<div class="w-full flex flex-wrap justify-center items-center gap-6 py-10">
+
+    <!-- Producto ejemplo 1 -->
+    <div class="w-60 p-2 bg-white rounded-xl transform transition-all hover:translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+        <img src="images/tomate.jpg" alt="Tomates frescos" class="h-40 w-full object-cover rounded-xl">
+        <div class="p-2">
+            <h2 class="font-bold text-lg mb-2">Tomates Frescos</h2>
+            <span class="text-xl font-semibold">$4.500</span>
+            <p>Precio por kilo</p>
+        </div>
+        <div class="flex items-center gap-2 justify-center mb-3">
+            <a href="producto.html">
+                <button class="px-3 py-1 rounded-lg bg-gray-300 text-black hover:bg-green-600 hover:text-white">Ver Más</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- Producto ejemplo 2 -->
+    <div class="w-60 p-2 bg-white rounded-xl transform transition-all hover:translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+        <img src="images/maiz.jpg" alt="Maíz amarillo" class="h-40 w-full object-cover rounded-xl">
+        <div class="p-2">
+            <h2 class="font-bold text-lg mb-2">Maíz Amarillo</h2>
+            <span class="text-xl font-semibold">$3.200</span>
+            <p>Precio por bulto</p>
+        </div>
+        <div class="flex items-center gap-2 justify-center mb-3">
+            <a href="producto.html">
+                <button class="px-3 py-1 rounded-lg bg-gray-300 text-black hover:bg-green-600 hover:text-white">Ver Más</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- Producto ejemplo 3 -->
+    <div class="w-60 p-2 bg-white rounded-xl transform transition-all hover:translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+        <img src="images/papa.jpg" alt="Papas criollas" class="h-40 w-full object-cover rounded-xl">
+        <div class="p-2">
+            <h2 class="font-bold text-lg mb-2">Papas Criollas</h2>
+            <span class="text-xl font-semibold">$2.800</span>
+            <p>Precio por kilo</p>
+        </div>
+        <div class="flex items-center gap-2 justify-center mb-3">
+            <a href="producto.html">
+                <button class="px-3 py-1 rounded-lg bg-gray-300 text-black hover:bg-green-600 hover:text-white">Ver Más</button>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

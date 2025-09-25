@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroMarket - Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .surface-card {
+            background-color: #f9fafb; /* Fondo suave */
+        }
+    </style>
+</head>
+<body class="bg-gray-300 min-h-screen flex items-center justify-center p-6">
+
+<!-- Contenedor del registro -->
+<div class="bg-gray-50 w-full surface-card py-7 px-6 sm:px-8 shadow-xl rounded-2xl max-w-md">
+
+    <!-- Logo / Nombre -->
+    <div class="text-center mb-6">
+        <h1 class="text-2xl font-bold text-green-700">AGROMARKET</h1>
+        <p class="text-gray-600">Crea tu cuenta para comenzar</p>
+    </div>
+
+    <!-- Formulario -->
+    <form action="index.html" method="post">
+
+        <label for="nombre" class="block text-gray-800 text-lg font-medium mb-2">Nombre</label>
+        <input
+                id="nombre"
+                name="nombre"
+                type="text"
+                class="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                placeholder="Juan"
+                required
+        />
+
+        <label for="apellido" class="block text-gray-800 text-lg font-medium mb-2">Apellido</label>
+        <input
+                id="apellido"
+                name="apellido"
+                type="text"
+                class="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                placeholder="Pérez"
+                required
+        />
+
+        <label for="username" class="block text-gray-800 text-lg font-medium mb-2">Usuario</label>
+        <input
+                id="username"
+                name="username"
+                type="text"
+                class="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                placeholder="juanperez"
+                required
+        />
+
+        <label for="email" class="block text-gray-800 text-lg font-medium mb-2">Correo Electrónico</label>
+        <input
+                id="email"
+                name="email"
+                type="email"
+                class="w-full mb-4 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                placeholder="correo@ejemplo.com"
+                required
+        />
+
+        <label for="password" class="block text-gray-800 text-lg font-medium mb-2">Contraseña</label>
+        <input
+                id="password"
+                name="password"
+                type="password"
+                class="w-full mb-6 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+                placeholder="********"
+                required
+        />
+
+        <!-- Botón y enlaces -->
+        <button
+                type="submit"
+                class="w-full py-2 bg-green-600 rounded-lg text-white font-semibold hover:bg-green-700 transition"
+        >
+            Registrarse
+        </button>
+
+        <p class="mt-4 text-gray-600 text-center">
+            ¿Ya tienes cuenta?
+            <a class="text-blue-600 hover:underline" href="login.html">Inicia sesión</a>
+        </p>
+        <p class="mt-2 text-center">
+            <a class="text-gray-500 hover:underline" href="index.html">← Volver al inicio</a>
+        </p>
+    </form>
+
+</div>
+
+</body>
+</html>
